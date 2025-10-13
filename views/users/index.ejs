@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome <%= user.username %></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"></script>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -19,13 +20,54 @@
 
   <main>
     <h1>Welcome, <%= user.username %>!</h1>
-    <p>Email: <%= user.email %></p>
-    
     <div class="dashboard">
-      <h2>Quick Actions</h2>
-      <a href="/stocks">View My Portfolio</a>
+      <h2>Portfolio Summary</h2>
+      <a href="/stocks">View My stocks</a>
       <a href="/stocks/new">Add New Stock</a>
     </div>
   </main>
+  <!-- charts -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+  // Extract stock labels and profit values from user.stocks
+  const labels = <%- JSON.stringify(user.stocks.map(stock => stock.tickerSymbol)) %>;
+  const total = <%- JSON.stringify(user.stocks.map(stock => stock.currentPrice * stock.sharesOwned)) %>;
+
+  const ctx = document.getElementById('myChart').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Profit by Stock ($)',
+        data: total,
+        backgroundColor: [
+          '#ffbe0b',
+          '#fb5607',
+          '#ff006e',
+          '#8338ec',
+          '#3a86ff',
+          '#ffbe0c'
+        ],
+        borderColor: 'rgba(255, 255, 255, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.label + ': $' + context.raw.toFixed(2);
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
 </body>
 </html>
