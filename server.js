@@ -7,11 +7,16 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')
+const methodOverride = require("method-override");
 /* ===================================
   ///////  IMPORT VARIABLES //////
  =================================== */
 
 const authController = require('./controllers/auth');
+const stocksController = require('./controllers/stocks')
+const usersController = require('./controllers/users');
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const app = express();
 /* ===================================
@@ -19,6 +24,7 @@ const app = express();
  =================================== */
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 app.use(
   session({
     secret: process.env.SECRET_PASSWORD,
@@ -28,6 +34,10 @@ app.use(
   })
 )
 app.use('/auth', authController);
+app.use('/stocks', stocksController);
+app.use('/users', usersController)
+app.use(isSignedIn)
+app.use(passUserToView)
  /* ===================================
   ///////  MONGOOSE CONNECTION /////
  =================================== */

@@ -1,0 +1,31 @@
+
+<!-- user homepage -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome <%= user.username %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/stocks">My Portfolio</a>
+    <form action="/auth/sign-out" method="POST" style="display: inline;">
+      <button type="submit">Sign Out</button>
+    </form>
+  </nav>
+
+  <main>
+    <h1>Welcome, <%= user.username %>!</h1>
+    <p>Email: <%= user.email %></p>
+    
+    <div class="dashboard">
+      <h2>Quick Actions</h2>
+      <a href="/stocks">View My Portfolio</a>
+      <a href="/stocks/new">Add New Stock</a>
+    </div>
+  </main>
+</body>
+</html>

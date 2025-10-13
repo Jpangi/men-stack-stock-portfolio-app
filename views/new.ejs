@@ -1,0 +1,32 @@
+<!-- form for adding a new stock to portfolio -->
+<!-- views/new.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Food</title>
+  </head>
+  <body>
+       <%- include('./partials/_navbar.ejs') %>
+    <h1>Add Stock</h1>
+  
+    <form action="/stocks" method="POST">
+        <label for="tickerSymbol">Ticker Symbol:</label>
+        <input type="text" name="tickerSymbol" placeholder="Ticker Symbol" id="tickerSymbol" />
+        <label for="companyName">Company:</label>
+        <input type="text" name="companyName" placeholder="Company name" id="companyName" />
+        <label for="sharesOwned">Quantity:</label>
+        <input type="number" name="sharesOwned" placeholder="shares owned" id="sharesOwned" />
+        <label for="purchasePrice">Purchase Price:</label>
+        <input type="number" name="purchasePrice" placeholder="price purchased at" id="purchasePrice" />
+        <label for="purchaseDate">Date:</label>
+        <input type="date" name="purchaseDate" placeholder="date of purchase" id="purchaseDate" />
+        <label for="currentPrice">Current Price:</label>
+        <input type="number" name="currentPrice" placeholder="current price" id="currentPrice" />
+
+      <!-- Add a submit button -->
+      <button type="submit">Add Stock</button>
+    </form>
+  </body>
+</html>

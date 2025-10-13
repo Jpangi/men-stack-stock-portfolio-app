@@ -1,0 +1,51 @@
+<!-- shows the list of stocks a user has added -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= user.name %>'s stock</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <h1><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Stock List</h1>
+
+  <% if (user.stocks.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker Symbol</th>
+          <th>Company Name</th>
+          <th>Profit/Loss</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user.stocks.forEach(item => { %>
+          <tr>
+            <td><%= item.tickerSymbol %></td>
+            <td>
+                <%= item.companyName %>
+            </td>
+            <td>
+                $ <%= (item.currentPrice - item.purchasePrice).toFixed(2) %>
+            </td>
+            <td>
+                <form action="/stocks/<%= item._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                 <a href="/stocks/<%= item._id %>/edit">Edit</a>
+            </td>
+            </tr>
+            <% }) %>
+                </tbody>
+                </table>
+  <% } else { %>
+    <p>This user has no stock items yet.</p>
+  <% } %>
+</body>
+
+</html>
