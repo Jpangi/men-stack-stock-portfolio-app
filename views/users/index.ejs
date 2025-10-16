@@ -7,50 +7,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome <%= user.username %></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"></script>
-  <link rel="stylesheet" href="/styles.css">
-</head>
+   <link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 <body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/stocks">My Portfolio</a>
-    <form action="/auth/sign-out" method="POST" style="display: inline;">
-      <button type="submit">Sign Out</button>
-    </form>
+  <nav id="portfolioNav">
+<%- include('../partials/_navbar.ejs') %>
   </nav>
 
   <main>
-    <h1>Welcome, <%= user.username %>!</h1>
-    <div class="dashboard">
-      <h2>Portfolio Summary</h2>
-      <a href="/stocks">View My stocks</a>
-      <a href="/stocks/new">Add New Stock</a>
-    </div>
+    <h1 id="portfolioHeader"><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Portfolio!</h1>
   </main>
   <!-- charts -->
-
+<div id="chart">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<canvas id="myChart" width="400" height="400"></canvas>
+    <div id="chart-wrapper" style="width: 700px; height: 500px;">
+        <canvas id="myChart"></canvas>
+    </div>
+
 <script>
   // Extract stock labels and profit values from user.stocks
   const labels = <%- JSON.stringify(user.stocks.map(stock => stock.tickerSymbol)) %>;
   const total = <%- JSON.stringify(user.stocks.map(stock => stock.currentPrice * stock.sharesOwned)) %>;
-
   const ctx = document.getElementById('myChart').getContext('2d');
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+const backgroundColors = labels.map(() => getRandomColor());
+
 
   new Chart(ctx, {
     type: 'doughnut',
     data: {
+      options: {
+    responsive: true,           // scales with container
+    maintainAspectRatio: false, // allows width/height from CSS to take effect
+  },
       labels: labels,
       datasets: [{
         label: 'Profit by Stock ($)',
         data: total,
         backgroundColor: [
-          '#ffbe0b',
-          '#fb5607',
-          '#ff006e',
-          '#8338ec',
-          '#3a86ff',
-          '#ffbe0c'
+          '#00C805', 
+          '#39B54A', 
+          '#A6F4A6', 
+          '#0A9396', 
+          '#00BFFF', 
+          '#147DF5', 
+          '#FFD166', 
+          '#FF3B30', 
+          '#FF6B81', 
+          '#8E44AD'  
         ],
         borderColor: 'rgba(255, 255, 255, 1)',
         borderWidth: 1
@@ -58,6 +72,11 @@
     },
     options: {
       plugins: {
+      legend: {
+        labels: {
+          color: '#FFFFFF' // <--- makes the stock labels white
+        }
+      },
         tooltip: {
           callbacks: {
             label: function(context) {
@@ -69,5 +88,6 @@
     }
   });
 </script>
+</div>
 </body>
 </html>

@@ -19,6 +19,7 @@ const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const app = express();
+app.use(express.static('public'))
 /* ===================================
   ////////////  MIDDLEWARE /////////////
  =================================== */

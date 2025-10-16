@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <nav>
-        <a href="/">Home</a>
+    <nav id="navBar">
+        <a class="btn" href="/">Home</a>
         <% if(user) { %>
-            <a href="/users/<%=user._id%>">View my Portfolio</a>
-            <a href="/stocks/new">Add Stock</a>
-            <a href="/users/show">Sign Out</a>
+            <a class="btn" href="/users/<%=user._id%>">View my Portfolio</a>
+            <a class="btn" href="/stocks">View My stocks</a>
+            <a class="btn" href="/stocks/new">Add Stock</a>
+            <a class="btn" href="/auth/logout">Sign Out</a>
             <% } else { %>
-                <a href="/auth/sign-in">Sign In</a>
-                <a href="/auth/sign-up">Sign Up</a>
+                <a class="btn" href="/auth/sign-in">Sign In</a>
+                <a class="btn" href="/auth/sign-up">Sign Up</a>
                 <% } %>
     </nav>
 </body>

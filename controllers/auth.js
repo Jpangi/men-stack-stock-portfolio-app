@@ -38,7 +38,7 @@ router.post("/sign-up", async (req, res) => {
     // validation logic
 
     const user = await User.create(req.body);
-    res.redirect("/sign-in");
+    res.redirect("/auth/sign-in");
   } catch (error) {
     res.send(`Error: ${error}`)
   }
@@ -70,5 +70,11 @@ router.post("/sign-in", async (req, res) => {
   res.redirect(`/users/${userInDatabase._id}`);
 });
 
+//this is the route that logs the user out
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => { //the req.session.destroy is what 'destroys the session'
+        res.redirect('/user/login')
+    })
+});
 
 module.exports = router;
