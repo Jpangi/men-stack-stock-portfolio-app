@@ -11,15 +11,18 @@
 <body>
   <%- include('../partials/_navbar.ejs') %>
 
-  <h1><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Stock List</h1>
+  <h1 id="listHeader"><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Stock List</h1>
 
   <% if (user.stocks.length > 0) { %>
+    <div class="table-container">
     <table>
       <thead>
         <tr id="tableHeaders">
           <th>Ticker Symbol</th>
           <th>Company Name</th>
           <th>Profit/Loss</th>
+        <th>Delete</th>
+        <th>Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +47,7 @@
             <% }) %>
                 </tbody>
                 </table>
+                </div>
   <% } else { %>
     <p>This user has no stock items yet.</p>
   <% } %>

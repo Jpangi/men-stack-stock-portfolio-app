@@ -1,0 +1,230 @@
+/* Reset default browser styles for consistent appearance across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes padding and border included in element's total width/height */
+}
+
+/* Main body styling */
+body {
+    /* Use system fonts for native look and faster loading */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* Dark gradient background similar to Robinhood's dark theme */
+    background: linear-gradient(135deg, #0a0e13 0%, #1a1f26 100%);
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    display: flex; /* Use flexbox for centering content */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    color: #fff; /* White text color */
+    position: relative; /* Needed for absolute positioning of child elements */
+    overflow: hidden; /* Hide overflow from animated background elements */
+}
+
+/* Animated background glow element (top-right) */
+body::before {
+    content: ''; /* Required for pseudo-elements to appear */
+    position: absolute; /* Position relative to body */
+    width: 500px;
+    height: 500px;
+    /* Create a circular green glow effect */
+    background: radial-gradient(circle, rgba(0, 200, 83, 0.15) 0%, transparent 70%);
+    border-radius: 50%; /* Make it circular */
+    top: -200px; /* Position partially off-screen at top */
+    right: -200px; /* Position partially off-screen at right */
+    animation: pulse 8s ease-in-out infinite; /* Animate with pulse effect */
+}
+
+/* Animated background glow element (bottom-left) */
+body::after {
+    content: ''; /* Required for pseudo-elements to appear */
+    position: absolute; /* Position relative to body */
+    width: 400px;
+    height: 400px;
+    /* Create a circular green glow effect (slightly dimmer than ::before) */
+    background: radial-gradient(circle, rgba(0, 200, 83, 0.1) 0%, transparent 70%);
+    border-radius: 50%; /* Make it circular */
+    bottom: -150px; /* Position partially off-screen at bottom */
+    left: -150px; /* Position partially off-screen at left */
+    animation: pulse 8s ease-in-out infinite 2s; /* Animate with pulse effect, delayed by 2s */
+}
+
+/* Pulse animation for background glow elements */
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); /* Normal size */
+        opacity: 0.5; /* Half opacity */
+    }
+    50% { 
+        transform: scale(1.1); /* Slightly larger */
+        opacity: 0.8; /* More visible */
+    }
+}
+
+/* Main content container */
+.container {
+    text-align: center; /* Center all text inside */
+    z-index: 1; /* Place above background elements */
+    max-width: 600px; /* Limit width on large screens */
+    padding: 40px 20px; /* Space around content */
+}
+
+/* Main heading styling */
+h1 {
+    font-size: 3.5rem; /* Large text size */
+    font-weight: 700; /* Bold font */
+    margin-bottom: 20px; /* Space below heading */
+    /* Create gradient text effect from white to green */
+    background: linear-gradient(135deg, #fff 0%, #00c853 100%);
+    -webkit-background-clip: text; /* Clip background to text (Safari/Chrome) */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    background-clip: text; /* Clip background to text (standard) */
+    animation: fadeInDown 0.8s ease-out; /* Fade in from top on page load */
+}
+
+/* Fade in from top animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0; /* Start invisible */
+        transform: translateY(-30px); /* Start 30px above final position */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at normal position */
+    }
+}
+
+/* Subtitle text styling */
+.subtitle {
+    font-size: 1.2rem; /* Slightly larger than body text */
+    color: #b0b8c1; /* Muted gray color */
+    margin-bottom: 50px; /* Space below subtitle */
+    animation: fadeIn 1s ease-out 0.3s both; /* Fade in after 0.3s delay */
+}
+
+/* Simple fade in animation */
+@keyframes fadeIn {
+    from { opacity: 0; } /* Start invisible */
+    to { opacity: 1; } /* End fully visible */
+}
+
+/* Container for buttons */
+.button-group {
+    display: flex; /* Use flexbox for button layout */
+    gap: 20px; /* Space between buttons */
+    justify-content: center; /* Center buttons horizontally */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    animation: fadeInUp 1s ease-out 0.5s both; /* Fade in from bottom after 0.5s delay */
+}
+
+/* Fade in from bottom animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0; /* Start invisible */
+        transform: translateY(30px); /* Start 30px below final position */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at normal position */
+    }
+}
+
+/* Base button styling (shared by both buttons) */
+.btn {
+    padding: 16px 48px; /* Vertical and horizontal padding */
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: 600; /* Semi-bold font */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 8px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for all property changes */
+    position: relative; /* Needed for pseudo-element positioning */
+    overflow: hidden; /* Hide overflow from shine effect */
+    display: inline-block; /* Allow padding and prevent stretching */
+}
+
+/* Shine effect that slides across button on hover */
+.btn::before {
+    content: ''; /* Required for pseudo-elements to appear */
+    position: absolute; /* Position relative to button */
+    top: 0;
+    left: -100%; /* Start completely off-screen to the left */
+    width: 100%;
+    height: 100%;
+    /* Create a horizontal shine/gleam effect */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease; /* Animate the slide across */
+}
+
+/* Move shine effect across button on hover */
+.btn:hover::before {
+    left: 100%; /* Slide completely off-screen to the right */
+}
+
+/* Primary button (Sign In) - filled green style */
+.btn-primary {
+    background: #00c853; /* Robinhood green */
+    color: #0a0e13; /* Dark text for contrast */
+    box-shadow: 0 4px 20px rgba(0, 200, 83, 0.4); /* Green glow shadow */
+}
+
+/* Primary button hover effects */
+.btn-primary:hover {
+    background: #00e060; /* Slightly brighter green */
+    box-shadow: 0 6px 30px rgba(0, 200, 83, 0.6); /* Stronger green glow */
+    transform: translateY(-2px); /* Lift button up slightly */
+}
+
+/* Secondary button (Sign Up) - outline style */
+.btn-secondary {
+    background: transparent; /* No background fill */
+    color: #00c853; /* Green text */
+    border: 2px solid #00c853; /* Green border */
+}
+
+/* Secondary button hover effects */
+.btn-secondary:hover {
+    background: rgba(0, 200, 83, 0.1); /* Subtle green tint */
+    border-color: #00e060; /* Brighter green border */
+    color: #00e060; /* Brighter green text */
+    transform: translateY(-2px); /* Lift button up slightly */
+}
+
+/* Decorative floating dots */
+.dot {
+    position: absolute; /* Position anywhere on screen */
+    width: 4px;
+    height: 4px;
+    background: #00c853; /* Green color */
+    border-radius: 50%; /* Make it circular */
+    opacity: 0.6; /* Semi-transparent */
+    animation: float 6s ease-in-out infinite; /* Float up and down continuously */
+}
+
+/* Position each dot in different locations with staggered animation timing */
+.dot:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.dot:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+.dot:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
+.dot:nth-child(4) { top: 30%; right: 15%; animation-delay: 3s; }
+
+/* Float animation for dots - move up and down and scale slightly */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) scale(1); /* Normal position and size */
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.2); /* Move up and grow slightly */
+    }
+}
+
+/* Responsive design for mobile/tablet screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem; /* Smaller heading on mobile */
+    }
+    .subtitle {
+        font-size: 1rem; /* Smaller subtitle on mobile */
+    }
+    .btn {
+        padding: 14px 36px; /* Smaller buttons on mobile */
+        font-size: 1rem; /* Smaller button text on mobile */
+    }
+}
