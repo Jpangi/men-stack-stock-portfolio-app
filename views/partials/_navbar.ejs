@@ -12,10 +12,10 @@
     <nav id="navBar">
         <a class="btn" href="/">Home</a>
         <% if(user) { %>
-            <a class="btn" href="/users/<%=user._id%>">View my Portfolio</a>
-            <a class="btn" href="/stocks">View My stocks</a>
-            <a class="btn" href="/stocks/new">Add Stock</a>
-            <a class="btn" href="/auth/logout">Sign Out</a>
+            <a class="btn" href="/users/<%=user._id%>">Portfolio</a>
+            <a class="btn" href="/stocks">My Stocks</a>
+            <a class="btn" href="/stocks/new">New Stock</a>
+            <a class="btn" href="/auth/logout">Logout</a>
             <% } else { %>
                 <a class="btn" href="/auth/sign-in">Sign In</a>
                 <a class="btn" href="/auth/sign-up">Sign Up</a>
