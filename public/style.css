@@ -24,7 +24,8 @@ body{
 #navBar a{
     background-color: #00c853;
     /* Robinhood green */
-    color: #0a0e13;
+    color: white;
+    font-weight: bolder;
 }
 .btn {
   display: inline-block;          /* makes padding work properly */
@@ -52,45 +53,6 @@ body{
 
 
 
-/* ------------ homepage Sign-in and Sign-up -----------------*/
-#homepageBody {
-  display: flex;                 /* enables flex layout */
-  flex-direction: column;        /* stack items vertically */
-  justify-content: center;       /* vertical centering */
-  align-items: center;           /* horizontal centering */
-  height: 100vh;                 /* full viewport height */
-  text-align: center;            /* center text inside elements */
-  gap: 20px;                     /* spacing between elements */
-  background-color: #0A0A0A;    /* optional background */
-  color: #FFFFFF;                /* default text color */
-  font-family: 'Inter', sans-serif;
-}
-.homepage {
-  display: inline-block;          /* makes padding work properly */
-  padding: 10px 20px;             /* button size */
-  background-color: #00C805;      /* Robinhood green */
-  color: #fff;                    /* text color */
-  text-decoration: none;           /* remove underline */
-  border: none;                   /* remove default border */
-  border-radius: 8px;             /* rounded corners */
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  cursor: pointer;                /* pointer on hover */
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-/* Hover effect */
-.homepage:hover {
-  background-color: #039A00;      /* darker green on hover */
-  transform: scale(1.03);         /* slight pop effect */
-}
-
-/* Active / Click effect */
-.homepage:active {
-  transform: scale(0.98);         /* small press-down effect */
-}
-
-
 /* --------- Portfolio styling -----------*/
 /* text */
 #portfolioHeader{
@@ -99,6 +61,11 @@ font-size: 4em;
   display: flex;
   justify-content: center;     /* centers canvas inside wrapper */
   align-items: center;         /* vertical centering inside wrapper */
+   background: linear-gradient(135deg, #fff 0%, #00c853 100%);
+    -webkit-background-clip: text; /* Clip background to text (Safari/Chrome) */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    background-clip: text; /* Clip background to text (standard) */
+    animation: fadeInDown 0.8s ease-out; /* Fade in from top on page load */
 }
 
 
@@ -370,6 +337,52 @@ tbody tr:hover {
     gap: 20px;
 }
 .label-sign-in{
+    font-weight: 500;
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+
+/* --------- Sign up Page ------------ */
+
+.sign-up-header{
+    margin-top: 50px;
+    text-align: center;
+}
+.sign-up-container{
+    max-width: 300px;
+    margin: 50px auto;
+    background: #121212;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #222;
+}
+.btn-sign-up-form {
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #00c853;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-sign-up-form:hover {
+    background: #00b048;
+    transform: translateY(-1px);
+}
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.label-sign-up{
     font-weight: 500;
     color: #ccc;
     font-size: 0.95rem;

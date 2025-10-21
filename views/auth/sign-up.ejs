@@ -6,17 +6,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="POST">
-    <label for="email">Email:</label>
+    <h1 class="sign-up-header" >Create a new account!</h1>
+    <div class="sign-up-container">
+    <form class="sign-up-form" action="/auth/sign-up" method="POST">
+    <label class="label-sign-up" for="email">Email:</label>
       <input type="text" name="email" id="email" />
-      <label for="username">Username:</label>
+      <label class="label-sign-up" for="username">Username:</label>
       <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
+      <label class="label-sign-up" for="password">Password:</label>
       <input type="password" name="password" id="password" />
-      <label for="confirmPassword">Confirm Password:</label>
+      <label class="label-sign-up" for="confirmPassword">Confirm Password:</label>
       <input type="password" name="confirmPassword" id="confirmPassword" />
-      <button type="submit">Sign up</button>
+      <button class="btn-sign-up-form" type="submit">Sign up</button>
     </form>
+    </div>
   </body>
 </html>
