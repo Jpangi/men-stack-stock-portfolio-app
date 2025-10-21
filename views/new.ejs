@@ -5,28 +5,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Food</title>
+    <title>Add Stock</title>
   </head>
   <body>
        <%- include('./partials/_navbar.ejs') %>
-    <h1>Add Stock</h1>
-  
-    <form action="/stocks" method="POST">
-        <label for="tickerSymbol">Ticker Symbol:</label>
+    <h1 class="new-header">Add Stock</h1>
+  <div class="new-container">
+    <form class="new-form" action="/stocks" method="POST">
+        <label class="label-new" for="tickerSymbol">Ticker Symbol:</label>
         <input type="text" name="tickerSymbol" placeholder="Ticker Symbol" id="tickerSymbol" />
-        <label for="companyName">Company:</label>
-        <input type="text" name="companyName" placeholder="Company name" id="companyName" />
-        <label for="sharesOwned">Quantity:</label>
+        <label class="label-new" for="companyName">Company:</label>
+        <input  type="text" name="companyName" placeholder="Company name" id="companyName" />
+        <label class="label-new" for="sharesOwned">Quantity:</label>
         <input type="number" name="sharesOwned" placeholder="shares owned" id="sharesOwned" />
-        <label for="purchasePrice">Purchase Price:</label>
+        <label class="label-new" for="purchasePrice">Purchase Price:</label>
         <input type="number" name="purchasePrice" placeholder="price purchased at" id="purchasePrice" />
-        <label for="purchaseDate">Date:</label>
+        <label class="label-new" for="purchaseDate">Date:</label>
         <input type="date" name="purchaseDate" placeholder="date of purchase" id="purchaseDate" />
-        <label for="currentPrice">Current Price:</label>
+        <label class="label-new" for="currentPrice">Current Price:</label>
         <input type="number" name="currentPrice" placeholder="current price" id="currentPrice" />
 
       <!-- Add a submit button -->
-      <button type="submit">Add Stock</button>
+      <button class="btn-new-form" type="submit">Add Stock</button>
     </form>
+
+  </div>
+
   </body>
 </html>

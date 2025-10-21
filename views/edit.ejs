@@ -11,29 +11,32 @@
 <body>
   <%- include('./partials/_navbar.ejs') %>
 
-  <h1>Edit <%= stock.companyName %></h1>
-
-  <form action="/stocks/<%= stock._id %>?_method=PUT" method="POST">
-    <label for="tickerSymbol">Ticker Symbol:</label>
+  <h1 class="edit-header" >Edit <%= stock.companyName %></h1>
+<div class="edit-container">
+  <form class="edit-form" action="/stocks/<%= stock._id %>?_method=PUT" method="POST">
+    <label class="label-edit" for="tickerSymbol">Ticker Symbol:</label>
     <input type="text" name="tickerSymbol" id="tickerSymbol" value="<%= stock.tickerSymbol %>" required />
 
-    <label for="companyName">Company:</label>
+    <label class="label-edit" for="companyName">Company:</label>
     <input type="text" name="companyName" id="companyName" value="<%= stock.companyName %>" required />
 
-    <label for="sharesOwned">Quantity:</label>
+    <label class="label-edit" for="sharesOwned">Quantity:</label>
     <input type="number" name="sharesOwned" id="sharesOwned" value="<%= stock.sharesOwned %>" required />
 
-    <label for="purchasePrice">Purchase Price:</label>
+    <label class="label-edit" for="purchasePrice">Purchase Price:</label>
     <input type="number" step="0.01" name="purchasePrice" id="purchasePrice" value="<%= stock.purchasePrice %>" required />
 
-    <label for="purchaseDate">Date:</label>
+    <label class="label-edit" for="purchaseDate">Date:</label>
     <input type="date" name="purchaseDate" id="purchaseDate" value="<%= stock.purchaseDate ? stock.purchaseDate.toISOString().split('T')[0] : '' %>" required />
 
-    <label for="currentPrice">Current Price:</label>
+    <label class="label-edit" for="currentPrice">Current Price:</label>
     <input type="number" step="0.01" name="currentPrice" id="currentPrice" value="<%= stock.currentPrice %>" required />
 
-    <button type="submit">Update Stock</button>
+    <button class="btn-edit-form" type="submit">Update Stock</button>
   </form>
+
+</div>
+
 </body>
 
 </html>

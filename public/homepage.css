@@ -188,32 +188,6 @@ h1 {
     transform: translateY(-2px); /* Lift button up slightly */
 }
 
-/* Decorative floating dots */
-.dot {
-    position: absolute; /* Position anywhere on screen */
-    width: 4px;
-    height: 4px;
-    background: #00c853; /* Green color */
-    border-radius: 50%; /* Make it circular */
-    opacity: 0.6; /* Semi-transparent */
-    animation: float 6s ease-in-out infinite; /* Float up and down continuously */
-}
-
-/* Position each dot in different locations with staggered animation timing */
-.dot:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.dot:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
-.dot:nth-child(3) { top: 80%; left: 20%; animation-delay: 2s; }
-.dot:nth-child(4) { top: 30%; right: 15%; animation-delay: 3s; }
-
-/* Float animation for dots - move up and down and scale slightly */
-@keyframes float {
-    0%, 100% { 
-        transform: translateY(0) scale(1); /* Normal position and size */
-    }
-    50% { 
-        transform: translateY(-20px) scale(1.2); /* Move up and grow slightly */
-    }
-}
 
 /* Responsive design for mobile/tablet screens */
 @media (max-width: 600px) {

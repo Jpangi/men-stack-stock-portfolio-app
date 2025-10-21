@@ -10,8 +10,12 @@
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
+  <div class="container">
+<div class="stockHeader">
+  <h1><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Stock List</h1>
+  <p class="subtitle">View and manage your stock portfolio</p>
+</div>
 
-  <h1 id="listHeader"><%= user.username.charAt(0).toUpperCase() + user.username.slice(1) %>'s Stock List</h1>
 
   <% if (user.stocks.length > 0) { %>
     <div class="table-container">
@@ -21,28 +25,29 @@
           <th>Ticker Symbol</th>
           <th>Company Name</th>
           <th>Profit/Loss</th>
+          <th>Edit</th>
         <th>Delete</th>
-        <th>Edit</th>
         </tr>
       </thead>
       <tbody>
         <% user.stocks.forEach(item => { %>
           <tr>
-            <td><%= item.tickerSymbol %></td>
-            <td>
+            <td class="stock-symbol"><%= item.tickerSymbol %></td>
+            <td class="company-name">
                 <%= item.companyName %>
             </td>
-            <td>
+            <td class="price">
                 $ <%= (item.currentPrice - item.purchasePrice).toFixed(2) %>
             </td>
             <td>
-                <form action="/stocks/<%= item._id %>?_method=DELETE" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
+                 <a href="/stocks/<%= item._id %>/edit"  class="btn btn-edit">Edit</a>
             </td>
             <td>
-                 <a href="/stocks/<%= item._id %>/edit">Edit</a>
+                <form action="/stocks/<%= item._id %>?_method=DELETE" method="POST">
+                    <button  class="btn btn-delete" type="submit">Delete</button>
+                </form>
             </td>
+            
             </tr>
             <% }) %>
                 </tbody>
@@ -51,6 +56,7 @@
   <% } else { %>
     <p>This user has no stock items yet.</p>
   <% } %>
+  </div>
 </body>
 
 </html>
