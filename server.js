@@ -37,7 +37,7 @@ app.use(
 app.use('/auth', authController);
 app.use('/stocks', stocksController);
 app.use('/users', usersController)
-app.use(isSignedIn)
+// app.use(isSignedIn)
 app.use(passUserToView)
  /* ===================================
   ///////  MONGOOSE CONNECTION /////

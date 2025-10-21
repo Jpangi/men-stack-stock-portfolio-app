@@ -73,7 +73,7 @@ router.post("/sign-in", async (req, res) => {
 //this is the route that logs the user out
 router.get('/logout', (req, res) => {
     req.session.destroy(err => { //the req.session.destroy is what 'destroys the session'
-        res.redirect('/user/login')
+         res.redirect('/');
     })
 });
 
