@@ -7,15 +7,15 @@
 
 /* Main body styling */
 body {
-    /* Use system fonts for native look and faster loading */
+    
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    /* Dark gradient background similar to Robinhood's dark theme */
+   
     background: linear-gradient(135deg, #0a0e13 0%, #1a1f26 100%);
     min-height: 100vh; /* Ensure body takes at least full viewport height */
     display: flex; /* Use flexbox for centering content */
     align-items: center; /* Center content vertically */
     justify-content: center; /* Center content horizontally */
-    color: #fff; /* White text color */
+    color: #fff;
     position: relative; /* Needed for absolute positioning of child elements */
     overflow: hidden; /* Hide overflow from animated background elements */
 }
@@ -26,9 +26,9 @@ body::before {
     position: absolute; /* Position relative to body */
     width: 500px;
     height: 500px;
-    /* Create a circular green glow effect */
+  
     background: radial-gradient(circle, rgba(0, 200, 83, 0.15) 0%, transparent 70%);
-    border-radius: 50%; /* Make it circular */
+    border-radius: 50%; 
     top: -200px; /* Position partially off-screen at top */
     right: -200px; /* Position partially off-screen at right */
     animation: pulse 8s ease-in-out infinite; /* Animate with pulse effect */
@@ -40,7 +40,7 @@ body::after {
     position: absolute; /* Position relative to body */
     width: 400px;
     height: 400px;
-    /* Create a circular green glow effect (slightly dimmer than ::before) */
+
     background: radial-gradient(circle, rgba(0, 200, 83, 0.1) 0%, transparent 70%);
     border-radius: 50%; /* Make it circular */
     bottom: -150px; /* Position partially off-screen at bottom */
@@ -62,22 +62,22 @@ body::after {
 
 /* Main content container */
 .container {
-    text-align: center; /* Center all text inside */
+    text-align: center; 
     z-index: 1; /* Place above background elements */
-    max-width: 600px; /* Limit width on large screens */
-    padding: 40px 20px; /* Space around content */
+    max-width: 600px; 
+    padding: 40px 20px; 
 }
 
 /* Main heading styling */
 h1 {
-    font-size: 3.5rem; /* Large text size */
-    font-weight: 700; /* Bold font */
-    margin-bottom: 20px; /* Space below heading */
-    /* Create gradient text effect from white to green */
+    font-size: 3.5rem; 
+    font-weight: 700;
+    margin-bottom: 20px; 
+   
     background: linear-gradient(135deg, #fff 0%, #00c853 100%);
-    -webkit-background-clip: text; /* Clip background to text (Safari/Chrome) */
+    -webkit-background-clip: text; /* Clip background to text*/
     -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
-    background-clip: text; /* Clip background to text (standard) */
+    background-clip: text; /* Clip background to text*/
     animation: fadeInDown 0.8s ease-out; /* Fade in from top on page load */
 }
 
@@ -95,9 +95,9 @@ h1 {
 
 /* Subtitle text styling */
 .subtitle {
-    font-size: 1.2rem; /* Slightly larger than body text */
-    color: #b0b8c1; /* Muted gray color */
-    margin-bottom: 50px; /* Space below subtitle */
+    font-size: 1.2rem;
+    color: #b0b8c1;
+    margin-bottom: 50px; 
     animation: fadeIn 1s ease-out 0.3s both; /* Fade in after 0.3s delay */
 }
 
@@ -109,9 +109,9 @@ h1 {
 
 /* Container for buttons */
 .button-group {
-    display: flex; /* Use flexbox for button layout */
-    gap: 20px; /* Space between buttons */
-    justify-content: center; /* Center buttons horizontally */
+    display: flex; 
+    gap: 20px; 
+    justify-content: center; 
     flex-wrap: wrap; /* Allow buttons to wrap on small screens */
     animation: fadeInUp 1s ease-out 0.5s both; /* Fade in from bottom after 0.5s delay */
 }
@@ -131,10 +131,10 @@ h1 {
 /* Base button styling (shared by both buttons) */
 .btn {
     padding: 16px 48px; /* Vertical and horizontal padding */
-    font-size: 1.1rem; /* Slightly larger text */
-    font-weight: 600; /* Semi-bold font */
-    text-decoration: none; /* Remove underline from links */
-    border-radius: 8px; /* Rounded corners */
+    font-size: 1.1rem; 
+    font-weight: 600; 
+    text-decoration: none; 
+    border-radius: 8px; 
     transition: all 0.3s ease; /* Smooth transition for all property changes */
     position: relative; /* Needed for pseudo-element positioning */
     overflow: hidden; /* Hide overflow from shine effect */
@@ -149,7 +149,6 @@ h1 {
     left: -100%; /* Start completely off-screen to the left */
     width: 100%;
     height: 100%;
-    /* Create a horizontal shine/gleam effect */
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.5s ease; /* Animate the slide across */
 }
@@ -161,30 +160,30 @@ h1 {
 
 /* Primary button (Sign In) - filled green style */
 .btn-primary {
-    background: #00c853; /* Robinhood green */
-    color: #0a0e13; /* Dark text for contrast */
-    box-shadow: 0 4px 20px rgba(0, 200, 83, 0.4); /* Green glow shadow */
+    background: #00c853;
+    color: #0a0e13; 
+    box-shadow: 0 4px 20px rgba(0, 200, 83, 0.4); 
 }
 
 /* Primary button hover effects */
 .btn-primary:hover {
-    background: #00e060; /* Slightly brighter green */
-    box-shadow: 0 6px 30px rgba(0, 200, 83, 0.6); /* Stronger green glow */
+    background: #00e060; 
+    box-shadow: 0 6px 30px rgba(0, 200, 83, 0.6); 
     transform: translateY(-2px); /* Lift button up slightly */
 }
 
 /* Secondary button (Sign Up) - outline style */
 .btn-secondary {
     background: transparent; /* No background fill */
-    color: #00c853; /* Green text */
-    border: 2px solid #00c853; /* Green border */
+    color: #00c853; 
+    border: 2px solid #00c853; 
 }
 
 /* Secondary button hover effects */
 .btn-secondary:hover {
-    background: rgba(0, 200, 83, 0.1); /* Subtle green tint */
-    border-color: #00e060; /* Brighter green border */
-    color: #00e060; /* Brighter green text */
+    background: rgba(0, 200, 83, 0.1); 
+    border-color: #00e060; 
+    color: #00e060; 
     transform: translateY(-2px); /* Lift button up slightly */
 }
 
