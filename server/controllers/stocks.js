@@ -5,8 +5,16 @@ const ALPHA_VANTAGE_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
 const getStock = async (req, res) => {
   try {
-    const userId = req.params.userId; // or from auth middleware
+    const userId = req.user._id; // or from auth middleware
+
+    // Validate userId
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required" });
+    }
     const userStocks = await Stock.find({ userId });
+    if (userStocks.length === 0 || !userStocks) {
+      return res.json({ message: "No stocks found", portfolio: [] });
+    }
 
     const symbols = userStocks.map((s) => s.symbol);
 
