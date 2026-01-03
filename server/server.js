@@ -16,12 +16,7 @@ const requireAuth = require("./middleware/auth"); //protects routes
 // ===========================
 app.use(express.json());
 
-// app.use(
-//   cors({
-//     origin: "https://grounds-for-debate.onrender.com", // exact frontend URL
-//     credentials: true,
-//   })
-// );
+app.use(cors());
 app.use("/users", userRoutes);
 app.use("/api/stocks", stockRoutes);
 

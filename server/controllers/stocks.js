@@ -32,7 +32,7 @@ const getStock = async (req, res) => {
 
     const portfolio = userStocks.map((s) => {
       const stockInfo = stockData.find(
-        (d) => d["Global Quote"]["01. symbol"] === s.symbol
+        (d) => d.data["Global Quote"]["01. symbol"] === s.symbol
       );
       return {
         ...s.toObject(),
