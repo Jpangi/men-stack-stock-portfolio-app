@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 
 const stockSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
     symbol: {
       type: String,
       required: true,
@@ -15,17 +10,25 @@ const stockSchema = new mongoose.Schema(
     shares: {
       type: Number,
       required: true,
-      min: 0,
     },
-    purchasePrice: {
+    avgBuyPrice: {
       type: Number,
       required: true,
-      min: 0,
+    },
+    currentPrice: {
+      type: Number,
+    },
+    lastUpdated: {
+      type: Date,
+      default: Date.now,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true } // createdAt, updatedAt
 );
 
-const Stock = mongoose.model("Stock", stockSchema);
-
-module.exports = Stock;
+module.exports = mongoose.model("Stock", stockSchema);

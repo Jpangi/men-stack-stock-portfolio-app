@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../models/users");
 const bcrypt = require("bcryptjs");
+const dotenv = require("dotenv");
+dotenv.config();
 
 //create a token function
 const createToken = (_id) => {
@@ -31,11 +33,12 @@ const signUp = async (req, res) => {
       password: hashedPassword,
     });
     //runs the createToken function and passes in user._id
-    const token = createToken(user.id);
-    console.log(token);
+    const token = createToken(user._id);
     res.json({ message: "User Created and logged in", token, user });
   } catch (error) {
-    return res.status(400).json({ message: "Error with signup", error });
+    return res
+      .status(400)
+      .json({ message: "Error with signup", error: error.message });
   }
 };
 

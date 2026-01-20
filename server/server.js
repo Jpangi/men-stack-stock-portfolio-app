@@ -1,28 +1,34 @@
 // =======================
 // ======= IMPORTS =======
 // =======================
-const dotenv = require("dotenv");
-dotenv.config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
 const cors = require("cors");
+
 const userRoutes = require("./routes/userRoutes");
 const stockRoutes = require("./routes/stockRoutes");
-const requireAuth = require("./middleware/auth"); //protects routes
 
 // ===========================
 // ======== MIDDLEWARE =======
 // ===========================
+const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true, // if using cookies
+  })
+);
 app.use(express.json());
-
-app.use(cors());
 app.use("/users", userRoutes);
-app.use("/api/stocks", stockRoutes);
+app.use("/api", stockRoutes);
 
-// ===========================
-// ====== DB CONNECTION ======
-// ===========================
+// =======================================
+// ====== DB CONNECTION========
+// =======================================
+
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}`);

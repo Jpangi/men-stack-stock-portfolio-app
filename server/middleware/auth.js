@@ -7,11 +7,16 @@ const requireAuth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+
+    if (!decoded._id) {
+      return res.status(401).json({ message: "Invalid token: missing _id" });
+    }
+
+    req.user = { _id: decoded._id }; // now req.user._id exists
     next();
   } catch (error) {
-    console.error("Auth error:", error.message);
-    return res.status(401).json({ message: "Invalid or expired token" });
+    console.error("Auth error:", error);
+    return res.status(401).json({ message: "Invalid token" });
   }
 };
 
