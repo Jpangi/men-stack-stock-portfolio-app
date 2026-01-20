@@ -6,6 +6,7 @@ import SignIn from './pages/Signin';
 import SignUp from './pages/Signup';
 
 
+
 function App() {
 const [user, setUser] = useState(localStorage.getItem('token'))
 
@@ -28,6 +29,7 @@ const signOut = () => {
     <Routes>
         <Route path="/signup" element={<SignUp LogIn={LogIn} />} />
         <Route path="/" element={<SignIn LogIn={LogIn} />} />
+        <Route path="/user-stocks" element={<SignIn LogIn={LogIn} />} />
     </Routes>
     </>
   )

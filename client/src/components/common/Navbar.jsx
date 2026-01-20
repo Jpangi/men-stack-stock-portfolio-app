@@ -4,34 +4,25 @@ import { Link } from "react-router";
 //otherise show the signin and signup links
 const Navbar = (props) => {
     return (
-      <nav>
-        <ul>
-          {props.user ? (
-            <>
-              <li>
-                <Link onClick={props.signOut} to={"/"}>
-                  Sign Out
-                </Link>
-              </li>
-              <li>
-                <Link to={"/dashboard"}>My Portfolio</Link>
-              </li>
-              <li>
-                <Link to={"/addStock"}>Add Stock</Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to={"/"}>Sign In</Link>
-              </li>
-              <li>
-                <Link to={"/signup"}>Sign Up</Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
+        <nav>
+            <ul>
+                {props.user ? (
+                    <>
+                        <li>
+                            <Link onClick={props.signOut} to={'/'}>
+                                Sign Out
+                            </Link>
+                       </li>
+                        
+                    </>
+                ) : (
+                    <>
+                        <li><Link to={'/'}>Sign In</Link></li>
+                        <li><Link to={'/signup'}>Sign Up</Link></li>
+                    </>
+                )}
+            </ul>
+        </nav>
     );
 };
 
