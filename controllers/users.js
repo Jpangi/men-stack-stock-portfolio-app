@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("../models/users.js");
 const isSignedIn = require("../middleware/is-signed-in");
 
-
 // GET /:userId - Show user profile/dashboard
 router.get("/:userId", isSignedIn, async (req, res) => {
   try {
